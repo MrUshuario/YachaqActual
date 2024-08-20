@@ -1,9 +1,9 @@
 class BienvenidaResponse {
-  String titulo;
-  String alerta;
-  String image;
-  String icon;
-  String tipo;
+  String? titulo;
+  String? alerta;
+  String? image;
+  String? icon;
+  String? tipo;
 
   BienvenidaResponse(
       {this.titulo, this.alerta, this.image, this.icon, this.tipo});

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:yachaq/data/response/frecuentes.response.dart';
 import 'package:yachaq/dominio/frecuentes.repository.dart';
 import 'package:yachaq/nav_bar.dart';
@@ -18,7 +17,7 @@ class FrecuentesPage extends StatefulWidget {
 
 class _FrecuentesPage extends State<FrecuentesPage> implements FrecuentesView {
   List<FrecuentesResponse> frecuentesList = [];
-  PreguntasFrecuentes _preguntasFrecuentes;
+  late PreguntasFrecuentes _preguntasFrecuentes;
   final ScrollController listScrollController = ScrollController();
 
   @override
@@ -77,11 +76,12 @@ class _FrecuentesPage extends State<FrecuentesPage> implements FrecuentesView {
                           child: ClipRRect(child: Text((index + 1).toString())),
                         ),
                         title: Container(
-                          child: Html(
-                            data:
-                                """<h3><b>${frecuentesList[index].pregunta}</b></h3>""",
-                            //defaultTextStyle:  TextStyle(color: Colors.grey),
+                          child:
+                          Text(
+                            "${frecuentesList[index].pregunta}" ,
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                           ),
+
                         ),
                         backgroundColor: Colors.white,
                         children: <Widget>[
@@ -89,12 +89,12 @@ class _FrecuentesPage extends State<FrecuentesPage> implements FrecuentesView {
                             ListTile(
                               title: Container(
                                 child: Align(
-                                  child: Html(
-                                    data: frecuentesList[index].respuesta,
-                                    //defaultTextStyle:  TextStyle(color: Colors.grey, fontSize: 15.0,),
+                                  child:
+                                  Text(
+                                    "${frecuentesList[index].respuesta}" ,
+                                    style: const TextStyle(fontSize: 16),
                                   ),
                                 ),
-                                alignment: Alignment.center,
                               ),
                             ),
                           ])

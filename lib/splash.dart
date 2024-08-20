@@ -10,7 +10,7 @@ import 'package:yachaq/ui/dialog/dialog_init.dart';
 
 class SplashPage extends StatefulWidget {
 
-  const SplashPage({Key key}) : super(key: key);
+  //const SplashPage({Key key}) : super(key: key);
 
   static Route<dynamic> route() =>
       MaterialPageRoute(builder: (context) => SplashPage());

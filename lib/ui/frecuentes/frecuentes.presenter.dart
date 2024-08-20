@@ -2,15 +2,15 @@ import 'package:yachaq/dominio/frecuentes.repository.dart';
 import 'package:yachaq/ui/frecuentes/frecuentes.view.dart';
 
 class PreguntasFrecuentes {
-  FrecuentesRepository frecuentesRepository;
-  FrecuentesView view;
+  FrecuentesRepository? frecuentesRepository;
+  FrecuentesView? view;
 
   PreguntasFrecuentes({this.frecuentesRepository});
 
   getFrecuentess() {
-    frecuentesRepository.frecuentes(
+    frecuentesRepository?.frecuentes(
         (frecuentesListResponse) =>
-            {view.getFrecuentess(frecuentesListResponse)},
-        (message) => {view.onError(message)});
+            {view?.getFrecuentess(frecuentesListResponse)},
+        (message) => {view?.onError(message)});
   }
 }

@@ -1,7 +1,7 @@
 class DescripcionResponse {
-  String icon;
-  String description;
-  String infotipo;
+  String? icon;
+  String? description;
+  String? infotipo;
 
   DescripcionResponse({this.description, this.icon, this.infotipo});
 

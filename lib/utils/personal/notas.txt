@@ -1,0 +1,24 @@
+bienveinda.Repository, agrege un "?" porque pide que pueda ser un null lo retornado.
+Igual en las clases response en la carpeta response
+
+con otros agrge un late
+
+1) CAMBIARLO SI DA ERRORES; LOS OBJETOS
+
+BienvenidaUseCase es el PATRON: repositorio (principio SOLID)
+
+ConsultasRepository es la fecha de pago de la pension65 con informacion general
+
+baseloading configuracion de com ose debe ver
+
+frecuentes (quitar todo lo HTML)
+-frecuetes/frecuentes detail not fun
+
+
+80347135
+04/06/1950
+
+keytool -genkey -v -keystore C:\Users\Edgar\Downloads\keystoreyachaq.jks  -storetype JKS -keyalg RSA -keysize 2048 -validity 10000  -alias yachaq
+clave: pension
+
+me decia que agrege: android:enableOnBackInvokedCallback="true"

@@ -5,7 +5,7 @@ import 'package:yachaq/dominio/bienvenida.usecase.dart';
 class BienvenidaRepository implements BienvenidaUseCase {
   @override
   // ignore: missing_return
-  Future<List<BienvenidaResponse>> bienvenida(
+  Future<List<BienvenidaResponse>?> bienvenida(
       Function(List<BienvenidaResponse> bienvenidaList) onSuccess,
       Function(String) onError) async {
     await HttpResponse.get(

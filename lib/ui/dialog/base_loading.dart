@@ -8,7 +8,7 @@ class BaseLoadingPage extends StatefulWidget {
 
 class _BaseLoadingPageState extends State<BaseLoadingPage>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationImageController;
+  late AnimationController _animationImageController;
 
   @override
   void initState() {

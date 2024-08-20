@@ -1,5 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:yachaq/data/response/consulta_pension.response.dart';
 import 'package:yachaq/data/response/descripcion.response.dart';
 import 'package:yachaq/nav_bar.dart';
@@ -142,10 +143,30 @@ class _NotFoundUserInformationPensionPageState
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Flexible(
-                        child: Html(
+                        child:
+
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Consulta tu clasificación socieconómica aquí',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  decoration: TextDecoration.underline,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    launchUrl(Uri.parse('https://bit.ly/3rz7OKV'));
+                                  },
+                              ),
+                            ],
+                          ),
+                        ),
+                            /*
+                        Html(
                           data:
                               "<h3>Consulta tu clasificación socieconómica aquí<b><a href=https://bit.ly/3rz7OKV target=_blank>https://bit.ly/3rz7OKV</a></b></h3>",
-                        ),
+                        ),*/
                       )
                     ]),
                     Padding(

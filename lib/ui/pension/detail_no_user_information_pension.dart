@@ -53,7 +53,7 @@ class _NoUserInformationPensionPageState
       personaCobroShow = false;
     }
 
-    label = widget.userInfo.fechaPagoLabel;
+    label = widget.userInfo.fechaPagoLabel!;
   }
 
   @override
@@ -115,7 +115,7 @@ class _NoUserInformationPensionPageState
                     ),
                     Visibility(
                       child: Text(
-                        widget.userInfo.monto.isNotEmpty
+                        widget.userInfo.monto!.isNotEmpty
                             ? "Tienes un depósito en tu cuenta"
                             : "Lamentablemente usted",
                         style: TextStyle(fontSize: 16),
@@ -300,16 +300,16 @@ class _NoUserInformationPensionPageState
                           Visibility(
                               visible: widget.userInfo.latitud != null &&
                                   widget.userInfo.longitud != null &&
-                                  widget.userInfo.longitud.isNotEmpty &&
-                                  widget.userInfo.latitud.isNotEmpty,
+                                  widget.userInfo.longitud!.isNotEmpty &&
+                                  widget.userInfo.latitud!.isNotEmpty,
                               child: SizedBox(
                                 width: 20,
                               )),
                           Visibility(
                               visible: widget.userInfo.latitud != null &&
                                   widget.userInfo.longitud != null &&
-                                  widget.userInfo.longitud.isNotEmpty &&
-                                  widget.userInfo.latitud.isNotEmpty,
+                                  widget.userInfo.longitud!.isNotEmpty &&
+                                  widget.userInfo.latitud!.isNotEmpty,
                               child: Container(
                                   //padding: EdgeInsets.only(left: 20),
                                   child: GestureDetector(

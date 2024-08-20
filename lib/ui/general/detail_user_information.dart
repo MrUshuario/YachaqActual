@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/shims/dart_ui_real.dart';
 import 'package:yachaq/data/response/consulta_general.response.dart';
 import 'package:yachaq/data/response/descripcion_general.response.dart';
 import 'package:yachaq/nav_bar.dart';
@@ -23,7 +22,7 @@ class UserInformationPage extends StatefulWidget {
 
 class _UserInformationPageState extends State<UserInformationPage> {
   String cse = '';
-  String condicion;
+  late String condicion;
   @override
   void initState() {
     super.initState();
@@ -160,7 +159,7 @@ class _UserInformationPageState extends State<UserInformationPage> {
                       padding: EdgeInsets.only(bottom: 10),
                     ),
                     Text(
-                        widget.userInfo.ubigeo.isEmpty
+                        widget.userInfo.ubigeo!.isEmpty
                             ? "-"
                             : widget.userInfo.ubigeo.toString() +
                                 ", " +
@@ -198,7 +197,7 @@ class _UserInformationPageState extends State<UserInformationPage> {
                       padding: EdgeInsets.only(bottom: 10),
                     ),
                     Text(
-                        widget.userInfo.fechaVencimientoCSE.isEmpty
+                        widget.userInfo.fechaVencimientoCSE!.isEmpty
                             ? "-"
                             : customFormat(
                                 widget.userInfo.fechaVencimientoCSE.toString()),

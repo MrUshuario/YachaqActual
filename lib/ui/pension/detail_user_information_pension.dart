@@ -332,16 +332,16 @@ class _UserInformationPensionPageState
                           Visibility(
                               visible: widget.userInfo.latitud != null &&
                                   widget.userInfo.longitud != null &&
-                                  widget.userInfo.longitud.isNotEmpty &&
-                                  widget.userInfo.latitud.isNotEmpty,
+                                  widget.userInfo.longitud!.isNotEmpty &&
+                                  widget.userInfo.latitud!.isNotEmpty,
                               child: SizedBox(
                                 width: 20,
                               )),
                           Visibility(
                               visible: widget.userInfo.latitud != null &&
                                   widget.userInfo.longitud != null &&
-                                  widget.userInfo.longitud.isNotEmpty &&
-                                  widget.userInfo.latitud.isNotEmpty,
+                                  widget.userInfo.longitud!.isNotEmpty &&
+                                  widget.userInfo.latitud!.isNotEmpty,
                               child: Container(
                                   //padding: EdgeInsets.only(left: 20),
                                   child: GestureDetector(

@@ -1,5 +1,5 @@
 class DescripcionGeneralResponse {
-  String description;
+  String? description;
 
   DescripcionGeneralResponse({this.description});
 

@@ -1,9 +1,9 @@
 class RequisitosResponse {
-  String size;
-  String icon;
-  String image;
-  String description;
-  String enlace;
+  String? size;
+  String? icon;
+  String? image;
+  String? description;
+  String? enlace;
 
   RequisitosResponse(
       {this.size, this.icon, this.image, this.description, this.enlace});

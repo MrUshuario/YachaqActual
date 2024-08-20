@@ -5,7 +5,7 @@ import 'detail_not_found_user_information_pension.dart';
 import 'detail_user_information_pension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hb_check_code/hb_check_code.dart';
+//import 'package:hb_check_code/hb_check_code.dart';
 import 'package:yachaq/data/response/bienvenida.response.dart';
 import 'package:yachaq/data/response/consulta_pension.response.dart';
 import 'package:yachaq/data/response/descripcion.response.dart';
@@ -31,13 +31,13 @@ class _PensionPageState extends State<PensionPage> implements PensionView {
   List<BienvenidaResponse> varBienvenidaList = [];
   String code = "";
   String verifyResult = "";
-  String selectedDateFormat;
+  late String selectedDateFormat;
 
   TextEditingController _dni = TextEditingController();
   TextEditingController _captchacode = TextEditingController();
   TextEditingController dayValue = TextEditingController();
   TextEditingController yearValue = TextEditingController();
-  PensionPresenter pensionPresenter;
+  late PensionPresenter pensionPresenter;
 
   String monthValue = "enero";
   String monthKeyValue = "01";
@@ -311,6 +311,18 @@ class _PensionPageState extends State<PensionPage> implements PensionView {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          //LECTOR OBSOLETO
+                          Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 2),
+                            borderRadius: BorderRadius.circular(8)
+                          ), child: Text(code,
+                            style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 20)),
+                          ),
+                          const SizedBox(width: 10),
+
+                          /*
                           Container(
                               padding: EdgeInsets.all(5),
                               child: HBCheckCode(
@@ -326,6 +338,7 @@ class _PensionPageState extends State<PensionPage> implements PensionView {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8.0)),
                               )),
+                          */
                           ElevatedButton(
                             style: ButtonStyle(
                                 backgroundColor:

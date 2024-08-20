@@ -137,7 +137,7 @@ class _NoUserInformationPageState extends State<NoUserInformationPage> {
                         child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                                widget.userInfo.cse.isEmpty
+                                widget.userInfo.cse!.isEmpty
                                     ? "-"
                                     : widget.userInfo.cse.toString(),
                                 style: TextStyle(
@@ -169,7 +169,7 @@ class _NoUserInformationPageState extends State<NoUserInformationPage> {
                       padding: EdgeInsets.only(bottom: 10),
                     ),
                     Text(
-                        widget.userInfo.ubigeo.isEmpty
+                        widget.userInfo.ubigeo!.isEmpty
                             ? "-"
                             : widget.userInfo.ubigeo.toString() +
                                 ", " +
@@ -207,7 +207,7 @@ class _NoUserInformationPageState extends State<NoUserInformationPage> {
                       padding: EdgeInsets.only(bottom: 10),
                     ),
                     Text(
-                        widget.userInfo.fechaVencimientoCSE.isEmpty
+                        widget.userInfo.fechaVencimientoCSE!.isEmpty
                             ? "-"
                             : customFormat(
                                 widget.userInfo.fechaVencimientoCSE.toString()),

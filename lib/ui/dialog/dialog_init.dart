@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:yachaq/utils/colors.dart';
 import 'package:yachaq/data/response/bienvenida.response.dart';
 
 class DialogInit extends StatefulWidget {
-  final List<BienvenidaResponse> bienvenidaList;
-  DialogInit({Key key, this.bienvenidaList}) : super(key: key);
+  final List<BienvenidaResponse>? bienvenidaList;
+  DialogInit({Key? key, this.bienvenidaList}) : super(key: key);
 
   @override
   _DialogInit createState() => _DialogInit(bienvenidaList: bienvenidaList);
 }
 
 class _DialogInit extends State<DialogInit> {
-  List<BienvenidaResponse> bienvenidaList;
+  List<BienvenidaResponse>? bienvenidaList;
   bool visiblemsgYanapago = false;
   _DialogInit({this.bienvenidaList});
 
@@ -43,7 +42,7 @@ class _DialogInit extends State<DialogInit> {
           ),
           height: 300, //370,
           child: ListView.builder(
-            itemCount: bienvenidaList.length,
+            itemCount: bienvenidaList?.length,
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 mainAxisSize: MainAxisSize.min,
@@ -97,7 +96,7 @@ class _DialogInit extends State<DialogInit> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        bienvenidaList[index].titulo.toString(),
+                        bienvenidaList![index].titulo.toString(),
                         style:
                             TextStyle(fontSize: 22, color: ColorsApp.grayDark),
                         textAlign: TextAlign.center,
@@ -109,21 +108,26 @@ class _DialogInit extends State<DialogInit> {
                     child: Row(mainAxisSize: MainAxisSize.max, children: [
                       Visibility(
                         visible:
-                            (bienvenidaList[index].image != "") ? true : false,
+                            (bienvenidaList![index].image != "") ? true : false,
                         child: Align(
                             alignment: Alignment.topLeft,
                             child: Container(
                                 height: 50,
                                 width: 50,
                                 child: Image.network(
-                                    "${bienvenidaList[index].image}"),
+                                    "${bienvenidaList![index].image}"),
                                 margin: EdgeInsets.only(bottom: 5, top: 5),
                                 padding: EdgeInsets.only(right: 10))),
                       ),
                       Flexible(
-                        child: Html(
-                          data: bienvenidaList[index].alerta,
+                        child: Text(
+                          "${bienvenidaList![index].alerta}",
+                          style: const TextStyle(fontSize: 16),
                         ),
+                        /*
+                        Html(
+                          data: bienvenidaList![index].alerta,
+                        ),*/
                       ),
                     ]),
                   ),

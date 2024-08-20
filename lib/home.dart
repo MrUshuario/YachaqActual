@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:yachaq/utils/helpersviewBlancoSelect.dart';
+import 'package:yachaq/utils/language.dart';
 import 'package:yachaq/ui/general/general.dart';
 import 'package:yachaq/ui/pension/pension_pago.dart';
 import 'package:yachaq/ui/frecuentes/frecuentes.dart';
@@ -8,18 +10,61 @@ import 'package:yachaq/ui/requisitos/requisitos.dart';
 import 'package:yachaq/utils/colors.dart';
 import 'package:yachaq/utils/resources.dart';
 
+
+
 class HomePage extends StatefulWidget {
   static Route<dynamic> route() =>
       MaterialPageRoute(builder: (context) => HomePage());
-
+  
+  //IDIOMA CAMBIAR
+  List<String> listIdiomas = [
+    "Español",
+    "Quechua",
+    "Aymara",
+  ];
+  TextEditingController idiomaCtrl = TextEditingController();
+  
   @override
   State<StatefulWidget> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+
+class _HomePageState extends State<HomePage> with Traductor {
+  final FlutterLocalization _localization = FlutterLocalization.instance;
+
   @override
   void initState() {
+
+    _localization.init(
+      mapLocales: [
+        const MapLocale(
+          'es',
+          Traductor.ES,
+          //countryCode: 'PE',
+          //fontFamily: 'Font EN',
+        ),
+        const MapLocale(
+          'ay',
+          Traductor.AY,
+          //countryCode: 'PE',
+          //fontFamily: 'Font EN',
+        ),
+        const MapLocale(
+          'que',
+          Traductor.QUE,
+          //countryCode: 'PE',
+          //fontFamily: 'Font EN',
+        ),
+      ],
+      initLanguageCode: 'ay',
+    );
+    _localization.onTranslatedLanguage = _onTranslatedLanguage;
+
     super.initState();
+  }
+
+  void _onTranslatedLanguage(Locale? locale) {
+    setState(() {});
   }
 
   @override
@@ -44,6 +89,81 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+
+                        ////
+                     /*
+                        HelpersViewBlancoSelect.formItemsDesign(
+                            DropdownButtonFormField(
+                                items: widget.listIdiomas
+                                    .map((dep) {
+                                  return DropdownMenuItem(
+                                    value: dep,
+                                    child: SizedBox(
+                                      width: double.infinity,
+                                      child: Text(
+                                        dep,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (String? value) async {
+                                  widget.idiomaCtrl.text = value!.isEmpty || value == null ? "" : value!;
+                                  setState(() {
+                                    //widget.formDescVisitatexto = value!;
+
+                                    if (value == "Español")  _localization.translate('en');
+                                    if (value == "Aymara") _localization.translate('ay');
+                                    if (value == "Quechua") _localization.translate('que');
+                                  }
+                                  );
+                                },
+                                /*
+                                validator: (value) => HelpersViewBlancoIcon.validateField(
+                                    widget.idiomaCtrl.text!,
+                                    widget.ParamCondicionVisitaPresencial), */
+
+                                isDense: true,
+                                isExpanded: true,
+                                hint: const Text("Condición De Visita"),
+                                value: widget.listIdiomas.elementAt(widget.listIdiomas.indexOf(widget.idiomaCtrl.text) == -1 ? 0 : widget.listIdiomas.indexOf(widget.idiomaCtrl.text))
+                            )
+                        ),
+*/
+                        /*
+                        const SizedBox(height: 16.0),
+                        Text(Traductor.title),
+
+                        Expanded(
+                          child: ElevatedButton(
+                            child: const Text("Español"),
+                            onPressed: () {
+                              _localization.translate('es', save: true);
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 16.0),
+                        Expanded(
+                          child: ElevatedButton(
+                            child: const Text('quechua'),
+                            onPressed: () {
+                              _localization.translate('que', save: true);
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 16.0),
+                        Expanded(
+                          child: ElevatedButton(
+                            child: const Text('aymara'),
+                            onPressed: () {
+                              _localization.translate('ay', save: true);
+                            },
+                          ),
+                        ),
+*/
+
+
+
                         Container(
                           width: 180,
                           child: Image.asset(Resources.pension65),

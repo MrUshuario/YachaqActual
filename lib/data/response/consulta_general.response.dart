@@ -1,16 +1,16 @@
 class ConsultaGeneralResponse {
-  String dni;
-  String nombres;
-  String apellidosNombres;
-  String condicion;
-  String ubigeo;
-  String departamento;
-  String provincia;
-  String distrito;
-  String cse;
-  String fechaVencimientoCSE;
-  String descripcion;
-  String ddjj;
+  String? dni;
+  String? nombres;
+  String? apellidosNombres;
+  String? condicion;
+  String? ubigeo;
+  String? departamento;
+  String? provincia;
+  String? distrito;
+  String? cse;
+  String? fechaVencimientoCSE;
+  String? descripcion;
+  String? ddjj;
 
   ConsultaGeneralResponse(
       {this.dni,

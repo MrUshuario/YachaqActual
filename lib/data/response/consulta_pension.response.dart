@@ -1,21 +1,21 @@
 class ConsultaPensionResponse {
-  String dni;
-  String nombres;
-  String apellidosNombres;
-  String sexo;
-  String monto;
-  String periodo;
-  String tercero;
-  String modalidadPago;
-  String lugarPago;
-  String fechaPago;
-  String fechaBono;
-  String fechaBonoLabel;
-  String fechaPagoLabel;
-  String latitud;
-  String longitud;
-  String condicion;
-  String mensaje;
+  String? dni;
+  String? nombres;
+  String? apellidosNombres;
+  String? sexo;
+  String? monto;
+  String? periodo;
+  String? tercero;
+  String? modalidadPago;
+  String? lugarPago;
+  String? fechaPago;
+  String? fechaBono;
+  String? fechaBonoLabel;
+  String? fechaPagoLabel;
+  String? latitud;
+  String? longitud;
+  String? condicion;
+  String? mensaje;
 
   ConsultaPensionResponse(
       {this.dni,

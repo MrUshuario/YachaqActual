@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:yachaq/data/response/requisitos.response.dart';
 import 'package:yachaq/dominio/requisitos.repository.dart';
 import 'package:yachaq/nav_bar.dart';
@@ -19,7 +18,7 @@ class RequisitosPage extends StatefulWidget {
 class _RequisitosPageState extends State<RequisitosPage>
     implements RequisitosView {
   List<RequisitosResponse> requisitosList = [];
-  RequisitosPresenter _requisitosPresenter;
+  late RequisitosPresenter _requisitosPresenter;
 
   @override
   void initState() {
@@ -136,11 +135,17 @@ class _RequisitosPageState extends State<RequisitosPage>
                                                               .toString()))),
                                             ),
                                             Flexible(
+                                              child: Text(
+                                                "${requisitosList[index].description}",
+                                                style: const TextStyle(fontSize: 16),
+                                              ),
+                                              /*
                                                 child: Html(
                                               data: requisitosList[index]
                                                   .description,
-                                              //scrollable: false,
-                                            )),
+                                            )*/
+
+                                            ),
                                           ]),
                                     ),
                                     SizedBox(

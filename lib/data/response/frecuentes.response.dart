@@ -1,6 +1,6 @@
 class FrecuentesResponse {
-  String pregunta;
-  String respuesta;
+  String? pregunta;
+  String? respuesta;
 
   FrecuentesResponse({this.pregunta, this.respuesta});
 

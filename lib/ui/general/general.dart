@@ -5,7 +5,7 @@ import 'detail_not_found_user_information.dart';
 import 'detail_user_information.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hb_check_code/hb_check_code.dart';
+//import 'package:hb_check_code/hb_check_code.dart';
 import 'package:yachaq/data/response/consulta_general.response.dart';
 import 'package:yachaq/data/response/descripcion_general.response.dart';
 import 'package:yachaq/dominio/consultas.repository.dart';
@@ -44,7 +44,7 @@ class _GeneralPageState extends State<GeneralPage> implements GeneralView {
     "diciembre"
   ];
   //String selectedDate;
-  String selectedDateFormat;
+  late String selectedDateFormat;
 
   //String CAPTCHA_SITE_KEY = "6LfUzY4aAAAAAB_L4wPTRFfHpU_lWy6yq7sddIfm";
   //RecaptchaV2Controller recaptchaV2Controller = RecaptchaV2Controller();
@@ -52,7 +52,7 @@ class _GeneralPageState extends State<GeneralPage> implements GeneralView {
   TextEditingController _captchacode = TextEditingController();
   TextEditingController dayValue = TextEditingController();
   TextEditingController yearValue = TextEditingController();
-  GeneralPresenter generalPresenter;
+  late GeneralPresenter generalPresenter;
 
   @override
   void initState() {
@@ -260,6 +260,18 @@ class _GeneralPageState extends State<GeneralPage> implements GeneralView {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(width: 2),
+                                      borderRadius: BorderRadius.circular(8)
+                                  ), child: Text(code,
+                                    style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 20)),
+                                ),
+                                const SizedBox(width: 10),
+
+                                //EL LECTOR OBSOLETO
+                                /*
+                                Container(
                                     padding: EdgeInsets.all(2),
                                     child: HBCheckCode(
                                       code: code,
@@ -274,7 +286,8 @@ class _GeneralPageState extends State<GeneralPage> implements GeneralView {
                                           width: 1), // set border width
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(10.0)),
-                                    )),
+                                    )),*/
+
                                 ElevatedButton(
                                   style: ButtonStyle(
                                       backgroundColor: MaterialStateProperty
@@ -478,6 +491,7 @@ class _GeneralPageState extends State<GeneralPage> implements GeneralView {
         break;
     }
   }
+
 
   refreshCaptchaNumeric() {
     code = "";
