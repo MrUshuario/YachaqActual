@@ -6,14 +6,30 @@ import 'package:yachaq/utils/language.dart';
 import 'package:flutter/services.dart';
 import 'package:yachaq/splash.dart';
 
+
 void main() {
   HttpOverrides.global = new MyHttpOverrides();
   runApp(Pension65());
+  //Locale _currentLocale = const Locale(AppConfig.defaultLanguage, '');
 }
 
 class Pension65 extends StatelessWidget {
   const Pension65({super.key});
   // This widget is the root of your application.
+
+
+/*
+  List<Locale> getSupportedLocales() {
+    List<Locale> locales = [];
+    for (var element in AppConfig.supportedLanguage) {
+      locales.add(Locale(element, ''));
+    }
+    return locales;
+  }
+
+ */
+
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

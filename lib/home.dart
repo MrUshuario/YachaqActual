@@ -15,7 +15,7 @@ import 'package:yachaq/utils/resources.dart';
 class HomePage extends StatefulWidget {
   static Route<dynamic> route() =>
       MaterialPageRoute(builder: (context) => HomePage());
-  
+
   //IDIOMA CAMBIAR
   List<String> listIdiomas = [
     "Español",
@@ -23,43 +23,66 @@ class HomePage extends StatefulWidget {
     "Aymara",
   ];
   TextEditingController idiomaCtrl = TextEditingController();
-  
+
   @override
   State<StatefulWidget> createState() => _HomePageState();
 }
 
 
-class _HomePageState extends State<HomePage> with Traductor {
+class _HomePageState extends State<HomePage> {
   final FlutterLocalization _localization = FlutterLocalization.instance;
 
   @override
   void initState() {
-
+    _localization.init(
+      mapLocales: [
+        const MapLocale(
+          'en',
+          AppLocale.EN,
+          countryCode: 'US',
+          fontFamily: 'Font EN',
+        ),
+        const MapLocale(
+          'km',
+          AppLocale.KM,
+          countryCode: 'KH',
+          fontFamily: 'Font KM',
+        ),
+        const MapLocale(
+          'ja',
+          AppLocale.JA,
+          countryCode: 'JP',
+          fontFamily: 'Font JA',
+        ),
+      ],
+      initLanguageCode: 'en',
+    );
+    /*
     _localization.init(
       mapLocales: [
         const MapLocale(
           'es',
           Traductor.ES,
-          //countryCode: 'PE',
-          //fontFamily: 'Font EN',
+          countryCode: 'PE',
+          fontFamily: 'Font EN',
         ),
         const MapLocale(
           'ay',
           Traductor.AY,
-          //countryCode: 'PE',
-          //fontFamily: 'Font EN',
+          countryCode: 'PE',
+          fontFamily: 'Font EN',
         ),
         const MapLocale(
-          'que',
-          Traductor.QUE,
-          //countryCode: 'PE',
-          //fontFamily: 'Font EN',
+          'qe',
+          Traductor.QE,
+          countryCode: 'PE',
+          fontFamily: 'Font EN',
         ),
       ],
       initLanguageCode: 'ay',
-    );
-    _localization.onTranslatedLanguage = _onTranslatedLanguage;
+    );*/
 
+    _localization.onTranslatedLanguage = _onTranslatedLanguage;
     super.initState();
   }
 
@@ -69,29 +92,51 @@ class _HomePageState extends State<HomePage> with Traductor {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-        child: Container(
-          width: 420,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(Resources.bg),
-              fit: BoxFit.fill,
-            ),
-          ),
-          child: SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+    return MaterialApp(
+      supportedLocales: _localization.supportedLocales,
+      localizationsDelegates: _localization.localizationsDelegates,
+      home: const FormUI(),
+      theme: ThemeData(fontFamily: _localization.fontFamily),
+    );
+  }
 
-                        ////
-                     /*
+
+}
+
+class FormUI extends StatefulWidget {
+  const FormUI({super.key});
+
+  @override
+  State<FormUI> createState() => _FormUI();
+}
+
+class _FormUI extends State<FormUI> {
+  final FlutterLocalization _localization = FlutterLocalization.instance;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+            width: 420,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(Resources.bg),
+                fit: BoxFit.fill,
+              ),
+            ),
+            child: SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          ////
+                          /*
                         HelpersViewBlancoSelect.formItemsDesign(
                             DropdownButtonFormField(
                                 items: widget.listIdiomas
@@ -130,123 +175,61 @@ class _HomePageState extends State<HomePage> with Traductor {
                             )
                         ),
 */
-                        /*
-                        const SizedBox(height: 16.0),
-                        Text(Traductor.title),
 
-                        Expanded(
-                          child: ElevatedButton(
-                            child: const Text("Español"),
-                            onPressed: () {
-                              _localization.translate('es', save: true);
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 16.0),
-                        Expanded(
-                          child: ElevatedButton(
-                            child: const Text('quechua'),
-                            onPressed: () {
-                              _localization.translate('que', save: true);
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 16.0),
-                        Expanded(
-                          child: ElevatedButton(
-                            child: const Text('aymara'),
-                            onPressed: () {
-                              _localization.translate('ay', save: true);
-                            },
-                          ),
-                        ),
-*/
+                          const SizedBox(height: 16.0),
+                          Text(context.formatString(
+                            AppLocale.thisIs,
+                            [AppLocale.title, 'LATEST'],
+                          ),),
 
-
-
-                        Container(
-                          width: 180,
-                          child: Image.asset(Resources.pension65),
-                          margin: EdgeInsets.only(bottom: 30),
-                        ),
-                        Container(
-                          width: 200,
-                          child: Image.asset(Resources.midis),
-                          margin: EdgeInsets.only(bottom: 100),
-                        ),
-                        GestureDetector(
-                          child: Container(
-                            height: 55,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: ColorsApp.colorBoton,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 3,
-                                    blurRadius: 7,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  )
-                                ]),
-                            child: Center(
-                              child: Text("Consulta general",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w300),
-                                  strutStyle: StrutStyle(height: 1.2)),
+                          Expanded(
+                            child: ElevatedButton(
+                              child: const Text("Español"),
+                              onPressed: () {
+                                _localization.translate('en', save: true);
+                              },
                             ),
                           ),
-                          onTap: () {
-                            Navigator.push(context, GeneralPage.route());
-                          },
-                        ),
-                        Padding(padding: EdgeInsets.only(top: 20)),
-                        GestureDetector(
-                          child: Container(
-                            height: 55,
-                            //padding: EdgeInsets.only(left: 80, right: 80),
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: ColorsApp.colorBoton,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 3,
-                                    blurRadius: 7,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  )
-                                ]),
-                            child: Center(
-                              child: Text("Consulta de pago",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w300),
-                                  strutStyle: StrutStyle(height: 1.5)),
+                          const SizedBox(width: 16.0),
+                          Expanded(
+                            child: ElevatedButton(
+                              child: const Text('quechua'),
+                              onPressed: () {
+                                _localization.translate('km', save: true);
+                              },
                             ),
                           ),
-                          onTap: () {
-                            Navigator.push(context, PensionPage.route());
-                          },
-                        ),
-                        Padding(padding: EdgeInsets.only(top: 20)),
-                        GestureDetector(
+                          const SizedBox(width: 16.0),
+                          Expanded(
+                            child: ElevatedButton(
+                              child: const Text('aymara'),
+                              onPressed: () {
+                                _localization.translate('ja', save: true);
+                              },
+                            ),
+                          ),
+
+
+
+
+                          Container(
+                            width: 180,
+                            child: Image.asset(Resources.pension65),
+                            margin: EdgeInsets.only(bottom: 30),
+                          ),
+                          Container(
+                            width: 200,
+                            child: Image.asset(Resources.midis),
+                            margin: EdgeInsets.only(bottom: 100),
+                          ),
+                          GestureDetector(
                             child: Container(
                               height: 55,
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   color: ColorsApp.colorBoton,
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
+                                  BorderRadius.all(Radius.circular(20)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.5),
@@ -257,65 +240,130 @@ class _HomePageState extends State<HomePage> with Traductor {
                                     )
                                   ]),
                               child: Center(
+                                child: Text("Consulta general",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w300),
+                                    strutStyle: StrutStyle(height: 1.2)),
+                              ),
+                            ),
+                            onTap: () {
+                              Navigator.push(context, GeneralPage.route());
+                            },
+                          ),
+                          Padding(padding: EdgeInsets.only(top: 20)),
+                          GestureDetector(
+                            child: Container(
+                              height: 55,
+                              //padding: EdgeInsets.only(left: 80, right: 80),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: ColorsApp.colorBoton,
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 3,
+                                      blurRadius: 7,
+                                      offset: Offset(
+                                          0, 3), // changes position of shadow
+                                    )
+                                  ]),
+                              child: Center(
+                                child: Text("Consulta de pago",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w300),
+                                    strutStyle: StrutStyle(height: 1.5)),
+                              ),
+                            ),
+                            onTap: () {
+                              Navigator.push(context, PensionPage.route());
+                            },
+                          ),
+                          Padding(padding: EdgeInsets.only(top: 20)),
+                          GestureDetector(
+                              child: Container(
+                                height: 55,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    color: ColorsApp.colorBoton,
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 3,
+                                        blurRadius: 7,
+                                        offset: Offset(
+                                            0, 3), // changes position of shadow
+                                      )
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    "Requisitos",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w300),
+                                    strutStyle: StrutStyle(height: 1.2),
+                                    maxLines: 2,
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(context, RequisitosPage.route());
+                              }),
+                          Padding(padding: EdgeInsets.only(top: 20)),
+                          GestureDetector(
+                            child: Container(
+                              height: 55,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: ColorsApp.colorBoton,
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 3,
+                                    blurRadius: 7,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: Center(
                                 child: Text(
-                                  "Requisitos",
+                                  "Preguntas frecuentes",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 22,
                                       fontWeight: FontWeight.w300),
-                                  strutStyle: StrutStyle(height: 1.2),
+                                  strutStyle: StrutStyle(
+                                    height: 1.2,
+                                  ),
                                   maxLines: 2,
                                 ),
                               ),
                             ),
                             onTap: () {
-                              Navigator.push(context, RequisitosPage.route());
-                            }),
-                        Padding(padding: EdgeInsets.only(top: 20)),
-                        GestureDetector(
-                          child: Container(
-                            height: 55,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: ColorsApp.colorBoton,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 3,
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3),
-                                ),
-                              ],
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Preguntas frecuentes",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w300),
-                                strutStyle: StrutStyle(
-                                  height: 1.2,
-                                ),
-                                maxLines: 2,
-                              ),
-                            ),
+                              Navigator.push(context, FrecuentesPage.route());
+                            },
                           ),
-                          onTap: () {
-                            Navigator.push(context, FrecuentesPage.route());
-                          },
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          )),),
+                ],
+              ),
+            )),),
     );
   }
 }
